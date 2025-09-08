@@ -1,0 +1,26 @@
+<div class="split-diff-view">
+  <div class="old-diff-table-wrapper">
+    <table>
+      <tbody>
+        {{#oldLines}}
+          <tr>
+            <td>{{lineNumber}}</td>
+            <td>{{{content}}}</td>
+          </tr>
+        {{/oldLines}}
+      </tbody>
+    </table>
+  </div>
+  <div class="new-diff-table-wrapper">
+    <table>
+      <tbody>
+        {{#newLines}}
+          <tr>
+            <td>{{lineNumber}}</td>
+            <td>{{{content}}}</td>
+          </tr>
+        {{/newLines}}
+      </tbody>
+    </table>
+  </div>
+</div>

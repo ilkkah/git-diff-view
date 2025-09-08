@@ -1,27 +1,24 @@
 {
-  "name": "@git-diff-view/derby",
-  "description": "@git-diff-view/derby",
+  "name": "@git-diff-view/hypothetical",
+  "description": "@git-diff-view/hypothetical",
   "author": "MrWangJustToDo",
   "license": "MIT",
   "version": "0.0.1",
-  "main": "./dist/derby-git-diff-view.mjs",
+  "main": "./dist/hypothetical-git-diff-view.mjs",
   "type": "module",
   "types": "index.d.ts",
   "files": [
     "src",
     "dist",
-    "styles",
-    "index.cjs",
-    "index.d.ts"
+    "styles"
   ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/MrWangJustToDo/git-diff-view.git",
-    "directory": "packages/derby"
+    "directory": "packages/hypothetical"
   },
   "scripts": {
-    "prebuild": "mkdir -p dist/css",
-    "build": "npm run prebuild && npm run gen:css && cp src/index.js dist/derby-git-diff-view.mjs && cp src/index.html dist/index.html",
+    "build": "echo 'build script not implemented yet'",
     "gen:css1": "postcss src/tailwind.css -o dist/css/diff-view.css",
     "gen:css2": "postcss src/tailwind_pure.css -o dist/css/diff-view-pure.css",
     "gen:css": "npm run gen:css1 && npm run gen:css2"
@@ -29,28 +26,24 @@
   "homepage": "https://mrwangjusttodo.github.io/git-diff-view",
   "exports": {
     ".": {
-      "require": "./index.cjs",
-      "types": "./index.d.ts",
-      "import": "./dist/derby-git-diff-view.mjs"
+      "import": "./dist/hypothetical-git-diff-view.mjs",
+      "types": "./index.d.ts"
     },
     "./styles/*": "./dist/css/*",
     "./package.json": "./package.json"
   },
   "keywords": [
     "diff component",
-    "derby diff component"
+    "hypothetical diff component"
   ],
   "dependencies": {
     "@git-diff-view/core": "^0.0.32",
-    "derby": "^0.10.21"
+    "mustache": "^4.2.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.20",
     "postcss": "^8.5.6",
     "tailwindcss": "^3.4.17",
     "postcss-cli": "^11.0.0"
-  },
-  "peerDependencies": {
-    "derby": "^0.10.21"
   }
 }
