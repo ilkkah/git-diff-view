@@ -1,0 +1,21 @@
+<table class="{{className}} w-full border-collapse border-spacing-0" data-mode="{{sideName}}">
+  <colgroup>
+    <col class="{{sideName}}-num-col" />
+    <col class="{{sideName}}-content-col" />
+  </colgroup>
+  <thead class="hidden">
+    <tr>
+      <th scope="col">{{sideName}} line number</th>
+      <th scope="col">{{sideName}} line content</th>
+    </tr>
+  </thead>
+  <tbody class="diff-table-body leading-[1.6]" data-onmousedown="handleMouseDown">
+    {{#lines}}
+      {{{hunkLine}}}
+      {{{contentLine}}}
+      {{{widgetLine}}}
+      {{{extendLine}}}
+    {{/lines}}
+    {{{finalHunkLine}}}
+  </tbody>
+</table>

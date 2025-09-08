@@ -1,34 +1,76 @@
 import { Component } from '../Component';
-import { getUnifiedContentLine, getPlainLineTemplate, getPlainDiffTemplate } from '@git-diff-view/core';
+import { getUnifiedContentLine } from '@git-diff-view/core';
+import { useEnableWrap, useFontSize, useTextWidth } from '../hooks';
+import { DiffUnifiedContentLine } from './DiffUnifiedContentLine';
+import { DiffUnifiedExtendLine } from './DiffUnifiedExtendLine';
+import { DiffUnifiedHunkLine } from './DiffUnifiedHunkLine';
+import { DiffUnifiedWidgetLine } from './DiffUnifiedWidgetLine';
 import template from './DiffUnifiedView.html';
 
 export class DiffUnifiedView extends Component {
   constructor(options) {
     super({ ...options, template });
 
-    // Controller logic
-    this.generateLines();
+    this.diffFile = this.options.diffFile;
+    this.enableWrap = useEnableWrap(this.options);
+    this.fontSize = useFontSize(this.options);
+
+    this.model.enableWrap = this.enableWrap;
+    this.model.diffFileId = this.diffFile.getId();
+    this.model.lines = [];
+    this.model.finalHunkLine = '';
+    this.model.asideWidth = 40;
+    this.model.selectStyle = false;
+
+    this.on('mousedown', '.diff-table-body', this.handleMouseDown);
+
+    this.initLines();
+    this.initAsideWidth();
   }
 
-  generateLines() {
-    const diffFile = this.options.diffFile;
-    diffFile.initRaw();
-    diffFile.buildUnifiedDiffLines();
+  initLines() {
+    const lines = getUnifiedContentLine(this.diffFile);
+    this.model.lines = lines.map(item => ({
+      hunkLine: new DiffUnifiedHunkLine({ ...this.options, ...item }).render(),
+      contentLine: new DiffUnifiedContentLine({ ...this.options, ...item }).render(),
+      widgetLine: new DiffUnifiedWidgetLine({ ...this.options, ...item }).render(),
+      extendLine: new DiffUnifiedExtendLine({ ...this.options, ...item }).render(),
+    }));
 
-    const unifiedLines = getUnifiedContentLine(diffFile);
+    this.model.finalHunkLine = new DiffUnifiedHunkLine({
+      ...this.options,
+      index: this.diffFile.unifiedLineLength,
+      lineNumber: this.diffFile.unifiedLineLength,
+    }).render();
 
-    const lines = [];
+    this.diffFile.subscribe(() => this.initLines());
+  }
 
-    for (const item of unifiedLines) {
-      const { unifiedLine } = item;
-      const template = unifiedLine.isChanged ? getPlainDiffTemplate({ diffLine: unifiedLine, rawLine: unifiedLine.content, operator: unifiedLine.type === 'add' ? 'add' : 'del' }) : getPlainLineTemplate(unifiedLine.content);
-      lines.push({
-        oldLineNumber: unifiedLine.oldLineNumber,
-        newLineNumber: unifiedLine.newLineNumber,
-        content: template || getPlainLineTemplate(unifiedLine.content),
-      });
+  initAsideWidth() {
+    const maxText = Math.max(this.diffFile.unifiedLineLength, this.diffFile.fileLineLength).toString();
+    const font = { fontSize: this.fontSize + 'px', fontFamily: 'Menlo, Consolas, monospace' };
+    const width = useTextWidth({ text: maxText, font });
+    this.model.asideWidth = Math.max(40, width + 10);
+  }
+
+  handleMouseDown(e) {
+    let ele = e.target;
+    if (ele && ele.nodeName === 'BUTTON') {
+      // removeAllSelection(); // This would be a utility function
+      return;
     }
-
-    this.model.lines = lines;
+    while (ele) {
+      const state = ele.getAttribute('data-state');
+      if (state) {
+        if (state === 'extend' || state === 'hunk' || state === 'widget') {
+          this.model.selectStyle = false;
+        } else {
+          this.model.selectStyle = true;
+        }
+        // removeAllSelection();
+        return;
+      }
+      ele = ele.parentElement;
+    }
   }
 }

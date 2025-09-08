@@ -1,0 +1,16 @@
+<div class="split-diff-view split-diff-view-normal flex w-full basis-[50%]">
+  <style data-select-style>
+    {{#selectStyle}}
+      #diff-split-view-{{diffFileId}} [data-state="extend"] {user-select: none}
+      #diff-split-view-{{diffFileId}} [data-state="hunk"] {user-select: none}
+      #diff-split-view-{{diffFileId}} [data-state="widget"] {user-select: none}
+    {{/selectStyle}}
+  </style>
+  <div class="old-diff-table-wrapper diff-table-scroll-container w-full overflow-x-auto overflow-y-hidden" style="--diff-aside-width: {{asideWidth}}px; overscroll-behavior-x: none; font-family: Menlo, Consolas, monospace; font-size: var(--diff-font-size);">
+    {{{oldTableView}}}
+  </div>
+  <div class="diff-split-line w-[1.5px]" style="background-color: var(--diff-border-color)"></div>
+  <div class="new-diff-table-wrapper diff-table-scroll-container w-full overflow-x-auto overflow-y-hidden" style="--diff-aside-width: {{asideWidth}}px; overscroll-behavior-x: none; font-family: Menlo, Consolas, monospace; font-size: var(--diff-font-size);">
+    {{{newTableView}}}
+  </div>
+</div>

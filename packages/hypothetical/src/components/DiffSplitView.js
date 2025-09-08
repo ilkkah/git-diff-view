@@ -1,44 +1,26 @@
 import { Component } from '../Component';
-import { getSplitContentLines, getPlainLineTemplate, getPlainDiffTemplate } from '@git-diff-view/core';
+import { useEnableWrap } from '../hooks/useEnableWrap';
+import { DiffSplitViewNormal } from './DiffSplitViewNormal';
+import { DiffSplitViewWrap } from './DiffSplitViewWrap';
 import template from './DiffSplitView.html';
 
 export class DiffSplitView extends Component {
   constructor(options) {
     super({ ...options, template });
 
-    // Controller logic
-    this.generateLines();
+    // In Solid, this would be a hook that gets the value from context.
+    // In our hypothetical framework, we will simulate this by passing the value in the options.
+    this.enableWrap = useEnableWrap(this.options);
+
+    this.render();
   }
 
-  generateLines() {
-    const diffFile = this.options.diffFile;
-    diffFile.initRaw();
-    diffFile.buildSplitDiffLines();
-
-    const splitLines = getSplitContentLines(diffFile);
-
-    const oldLines = [];
-    const newLines = [];
-
-    for (const item of splitLines) {
-      const { left, right } = item.splitLine;
-
-      if (left.type === 'empty') {
-        oldLines.push({ lineNumber: '', content: '' });
-      } else {
-        const template = left.isChanged ? getPlainDiffTemplate({ diffLine: left, rawLine: left.content, operator: 'del' }) : getPlainLineTemplate(left.content);
-        oldLines.push({ lineNumber: left.lineNumber, content: template || getPlainLineTemplate(left.content) });
-      }
-
-      if (right.type === 'empty') {
-        newLines.push({ lineNumber: '', content: '' });
-      } else {
-        const template = right.isChanged ? getPlainDiffTemplate({ diffLine: right, rawLine: right.content, operator: 'add' }) : getPlainLineTemplate(right.content);
-        newLines.push({ lineNumber: right.lineNumber, content: template || getPlainLineTemplate(right.content) });
-      }
+  render() {
+    if (this.enableWrap) {
+      this.model.view = new DiffSplitViewWrap(this.options).render();
+    } else {
+      this.model.view = new DiffSplitViewNormal(this.options).render();
     }
-
-    this.model.oldLines = oldLines;
-    this.model.newLines = newLines;
+    super.render();
   }
 }
