@@ -1,6 +1,6 @@
-import { Component } from '../Component';
+const { Component } = require('../Component');
 
-export class tools extends Component {
+class tools extends Component {
   constructor(options) {
     super(options);
   }
@@ -10,3 +10,4 @@ export class tools extends Component {
     return '';
   }
 }
+module.exports = { tools };

@@ -1,4 +1,4 @@
-import { DiffView } from './components/DiffView';
+const { DiffView } = require('./components/DiffView');
 
 const data = {
   oldFile: {

@@ -1,12 +1,12 @@
-import { Component } from '../Component';
-import { getSplitContentLines, SplitSide } from '@git-diff-view/core';
-import { DiffSplitHunkLine } from './DiffSplitHunkLineNormal';
-import { DiffSplitContentLine } from './DiffSplitContentLineNormal';
-import { DiffSplitWidgetLine } from './DiffSplitWidgetLineNormal';
-import { DiffSplitExtendLine } from './DiffSplitExtendLineNormal';
-import template from './DiffSplitViewTable.html';
+const { Component } = require('../Component');
+const { getSplitContentLines, SplitSide } = require('@git-diff-view/core');
+const { DiffSplitHunkLine } = require('./DiffSplitHunkLineNormal');
+const { DiffSplitContentLine } = require('./DiffSplitContentLineNormal');
+const { DiffSplitWidgetLine } = require('./DiffSplitWidgetLineNormal');
+const { DiffSplitExtendLine } = require('./DiffSplitExtendLineNormal');
+const template = require('./DiffSplitViewTable.html');
 
-export class DiffSplitViewTable extends Component {
+class DiffSplitViewTable extends Component {
   constructor(options) {
     super({ ...options, template });
 
@@ -69,3 +69,4 @@ export class DiffSplitViewTable extends Component {
     }
   }
 }
+module.exports = { DiffSplitViewTable };

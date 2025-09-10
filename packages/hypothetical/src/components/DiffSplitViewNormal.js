@@ -1,10 +1,10 @@
-import { Component } from '../Component';
-import { SplitSide } from '@git-diff-view/core';
-import { useFontSize, useIsMounted, useTextWidth } from '../hooks';
-import { DiffSplitViewTable } from './DiffSplitViewTable';
-import template from './DiffSplitViewNormal.html';
+const { Component } = require('../Component');
+const { SplitSide } = require('@git-diff-view/core');
+const { useFontSize, useIsMounted, useTextWidth } = require('../hooks');
+const { DiffSplitViewTable } = require('./DiffSplitViewTable');
+const template = require('./DiffSplitViewNormal.html');
 
-export class DiffSplitViewNormal extends Component {
+class DiffSplitViewNormal extends Component {
   constructor(options) {
     super({ ...options, template });
 
@@ -61,3 +61,4 @@ export class DiffSplitViewNormal extends Component {
     this.model.newTableView = new DiffSplitViewTable({ ...commonOptions, side: SplitSide.new }).render();
   }
 }
+module.exports = { DiffSplitViewNormal };

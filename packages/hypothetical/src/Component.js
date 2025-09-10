@@ -1,6 +1,6 @@
-import Mustache from 'mustache';
+const Mustache = require('mustache');
 
-export class Component {
+class Component {
   constructor(options) {
     this.options = options;
     this.model = options.model || {};
@@ -48,3 +48,5 @@ export class Component {
     // To be implemented by child classes
   }
 }
+
+module.exports = { Component };

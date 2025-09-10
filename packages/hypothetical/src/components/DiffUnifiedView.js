@@ -1,13 +1,13 @@
-import { Component } from '../Component';
-import { getUnifiedContentLine } from '@git-diff-view/core';
-import { useEnableWrap, useFontSize, useTextWidth } from '../hooks';
-import { DiffUnifiedContentLine } from './DiffUnifiedContentLine';
-import { DiffUnifiedExtendLine } from './DiffUnifiedExtendLine';
-import { DiffUnifiedHunkLine } from './DiffUnifiedHunkLine';
-import { DiffUnifiedWidgetLine } from './DiffUnifiedWidgetLine';
-import template from './DiffUnifiedView.html';
+const { Component } = require('../Component');
+const { getUnifiedContentLine } = require('@git-diff-view/core');
+const { useEnableWrap, useFontSize, useTextWidth } = require('../hooks');
+const { DiffUnifiedContentLine } = require('./DiffUnifiedContentLine');
+const { DiffUnifiedExtendLine } = require('./DiffUnifiedExtendLine');
+const { DiffUnifiedHunkLine } = require('./DiffUnifiedHunkLine');
+const { DiffUnifiedWidgetLine } = require('./DiffUnifiedWidgetLine');
+const template = require('./DiffUnifiedView.html');
 
-export class DiffUnifiedView extends Component {
+class DiffUnifiedView extends Component {
   constructor(options) {
     super({ ...options, template });
 
@@ -74,3 +74,4 @@ export class DiffUnifiedView extends Component {
     }
   }
 }
+module.exports = { DiffUnifiedView };

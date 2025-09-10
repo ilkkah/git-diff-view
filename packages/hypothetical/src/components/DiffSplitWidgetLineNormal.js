@@ -1,6 +1,6 @@
-import { Component } from '../Component';
+const { Component } = require('../Component');
 
-export class DiffSplitWidgetLineNormal extends Component {
+class DiffSplitWidgetLineNormal extends Component {
   constructor(options) {
     super(options);
   }
@@ -10,3 +10,4 @@ export class DiffSplitWidgetLineNormal extends Component {
     return '';
   }
 }
+module.exports = { DiffSplitWidgetLineNormal };

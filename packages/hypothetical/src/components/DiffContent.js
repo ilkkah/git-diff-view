@@ -1,6 +1,6 @@
-import { Component } from '../Component';
+const { Component } = require('../Component');
 
-export class DiffContent extends Component {
+class DiffContent extends Component {
   constructor(options) {
     super(options);
   }
@@ -10,3 +10,4 @@ export class DiffContent extends Component {
     return '';
   }
 }
+module.exports = { DiffContent };

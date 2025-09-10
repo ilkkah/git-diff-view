@@ -1,10 +1,10 @@
-import { Component } from '../Component';
-import { useEnableWrap } from '../hooks/useEnableWrap';
-import { DiffSplitViewNormal } from './DiffSplitViewNormal';
-import { DiffSplitViewWrap } from './DiffSplitViewWrap';
-import template from './DiffSplitView.html';
+const { Component } = require('../Component');
+const { useEnableWrap } = require('../hooks/useEnableWrap');
+const { DiffSplitViewNormal } = require('./DiffSplitViewNormal');
+const { DiffSplitViewWrap } = require('./DiffSplitViewWrap');
+const template = require('./DiffSplitView.html');
 
-export class DiffSplitView extends Component {
+class DiffSplitView extends Component {
   constructor(options) {
     super({ ...options, template });
 
@@ -24,3 +24,4 @@ export class DiffSplitView extends Component {
     super.render();
   }
 }
+module.exports = { DiffSplitView };

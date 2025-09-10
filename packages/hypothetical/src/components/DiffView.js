@@ -1,14 +1,14 @@
-import { Component } from '../Component';
-import { _cacheMap, DiffFile, SplitSide, DiffModeEnum } from '@git-diff-view/core';
-import { DiffSplitView } from './DiffSplitView';
-import { DiffUnifiedView } from './DiffUnifiedView';
+const { Component } = require('../Component');
+const { _cacheMap, DiffFile, SplitSide, DiffModeEnum } = require('@git-diff-view/core');
+const { DiffSplitView } = require('./DiffSplitView');
+const { DiffUnifiedView } = require('./DiffUnifiedView');
 // In a real framework, you would have a way to load templates.
 // For this hypothetical framework, we'll just import the string.
-import template from './DiffView.html';
+const template = require('./DiffView.html');
 
 _cacheMap.name = "@git-diff-view/hypothetical";
 
-export class DiffView extends Component {
+class DiffView extends Component {
   constructor(options) {
     // The template would be loaded here in a real framework
     super({ ...options, template });
@@ -213,3 +213,4 @@ export class DiffView extends Component {
     super.render();
   }
 }
+module.exports = { DiffView };
