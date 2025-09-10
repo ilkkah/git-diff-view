@@ -1,6 +1,6 @@
-const { Component } = require('../Component');
+import { Component } from '../Component';
 
-class DiffSplitHunkLineNormal extends Component {
+export class DiffSplitHunkLineNormal extends Component {
   constructor(options) {
     super(options);
   }
@@ -10,4 +10,3 @@ class DiffSplitHunkLineNormal extends Component {
     return '';
   }
 }
-module.exports = { DiffSplitHunkLineNormal };

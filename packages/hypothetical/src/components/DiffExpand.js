@@ -1,13 +1,15 @@
-const { Component } = require('../Component');
 
-class DiffExpand extends Component {
+import { Component } from '../Component';
+import template from './DiffExpand.html';
+
+export class DiffExpand extends Component {
   constructor(options) {
-    super(options);
+    super({ ...options, template });
+    this.model.text = '...';
+    this.on('click', '.diff-line-expand-button', this.handleClick);
   }
 
-  render() {
-    // Placeholder render method
-    return '';
+  handleClick() {
+    console.log('Expand button clicked');
   }
 }
-module.exports = { DiffExpand };

@@ -1,6 +1,6 @@
-const { Component } = require('../Component');
+import { Component } from '../Component';
 
-class DiffViewContext extends Component {
+export class DiffViewContext extends Component {
   constructor(options) {
     super(options);
   }
@@ -10,4 +10,3 @@ class DiffViewContext extends Component {
     return '';
   }
 }
-module.exports = { DiffViewContext };

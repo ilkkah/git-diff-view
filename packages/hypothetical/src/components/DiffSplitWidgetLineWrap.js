@@ -1,6 +1,6 @@
-const { Component } = require('../Component');
+import { Component } from '../Component';
 
-class DiffSplitWidgetLineWrap extends Component {
+export class DiffSplitWidgetLineWrap extends Component {
   constructor(options) {
     super(options);
   }
@@ -10,4 +10,3 @@ class DiffSplitWidgetLineWrap extends Component {
     return '';
   }
 }
-module.exports = { DiffSplitWidgetLineWrap };

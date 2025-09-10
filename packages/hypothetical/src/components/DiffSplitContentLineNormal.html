@@ -1,0 +1,22 @@
+{{^isHidden}}
+  <tr data-line="{{lineNumber}}" data-state="{{#hasDiff}}diff{{/hasDiff}}{{^hasDiff}}plain{{/hasDiff}}" data-side="{{sideName}}" class="diff-line {{#hasContent}}group{{/hasContent}}">
+    {{#hasContent}}
+      <td class="diff-line-{{sideName}}-num sticky left-0 z-[1] w-[1%] min-w-[40px] select-none pl-[10px] pr-[10px] text-right align-top" style="background-color: {{lineNumberBg}}; color: var(--{{lineNumberColorName}}); width: var(--diff-aside-width); min-width: var(--diff-aside-width); max-width: var(--diff-aside-width);">
+        {{#enableAddWidget}}
+          {{{addWidget}}}
+        {{/enableAddWidget}}
+        <span data-line-num="{{lineNumber}}" style="opacity: {{#hasChange}}1{{/hasChange}}{{^hasChange}}0.5{{/hasChange}}">
+          {{lineNumber}}
+        </span>
+      </td>
+      <td class="diff-line-{{sideName}}-content pr-[10px] align-top" style="background-color: {{contentBg}};">
+        {{{diffContent}}}
+      </td>
+    {{/hasContent}}
+    {{^hasContent}}
+      <td class="diff-line-{{sideName}}-placeholder select-none" style="background-color: var(--diff-empty-bg);" colspan="2">
+        <span>&ensp;</span>
+      </td>
+    {{/hasContent}}
+  </tr>
+{{/isHidden}}

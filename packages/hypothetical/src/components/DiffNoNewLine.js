@@ -1,6 +1,6 @@
-const { Component } = require('../Component');
+import { Component } from '../Component';
 
-class DiffNoNewLine extends Component {
+export class DiffNoNewLine extends Component {
   constructor(options) {
     super(options);
   }
@@ -10,4 +10,3 @@ class DiffNoNewLine extends Component {
     return '';
   }
 }
-module.exports = { DiffNoNewLine };

@@ -1,6 +1,6 @@
-const { Component } = require('../Component');
+import { Component } from '../Component';
 
-class DiffUnifiedWidgetLine extends Component {
+export class DiffUnifiedWidgetLine extends Component {
   constructor(options) {
     super(options);
   }
@@ -10,4 +10,3 @@ class DiffUnifiedWidgetLine extends Component {
     return '';
   }
 }
-module.exports = { DiffUnifiedWidgetLine };
