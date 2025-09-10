@@ -1,0 +1,12 @@
+<div class="diff-tailwindcss-wrapper" data-component="git-diff-view" data-theme="{{theme}}" data-version="{{version}}" data-highlighter="{{highlighter}}">
+  <div class="diff-style-root" style="--diff-font-size: {{fontSize}}px">
+    <div id="diff-root-{{diffFileId}}" class="diff-view-wrapper {{class}}" style="{{style}}">
+      <!--
+        In a real framework, we would have a way to dynamically render components here.
+        For example, we might have a custom tag like <component is="{{viewComponent}}" diffFile="{{diffFile}}"></component>.
+        For this demo, we will just use a placeholder that will be replaced by the rendered HTML of the sub-component.
+      -->
+      {{{view}}}
+    </div>
+  </div>
+</div>
